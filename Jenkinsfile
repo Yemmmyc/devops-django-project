@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_CREDENTIALS = credentials('dockerhub')  // Must match Jenkins credentials ID
+        DOCKER_CREDENTIALS = credentials('dockerhub')  // Jenkins credentials ID
         DOCKER_IMAGE = "yemisi76/devops-django:latest"
     }
 
@@ -27,14 +27,23 @@ pipeline {
                 sh 'docker push $DOCKER_IMAGE'
             }
         }
+
+        stage('Run with Docker Compose') {
+            steps {
+                echo "Running app using Docker Compose with remote image..."
+                sh 'docker-compose down || true'  // Stop old containers if running
+                sh 'docker-compose pull'
+                sh 'docker-compose up -d --build'
+            }
+        }
     }
 
     post {
         success {
-            echo 'Build and push completed successfully.'
+            echo '✅ Build, push, and run completed successfully.'
         }
         failure {
-            echo 'Build failed.'
+            echo '❌ Build failed.'
         }
     }
 }
