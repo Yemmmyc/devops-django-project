@@ -1,0 +1,21 @@
+# Ignore Python environment
+env/
+__pycache__/
+*.pyc
+
+# Ignore Vagrant and system files
+.vagrant/
+*.log
+*.pem
+
+# Ignore static build artifacts
+static/
+*.zip
+
+# Ignore IDE and OS files
+.vscode/
+*.DS_Store
+*.lnk
+
+# Ignore node_modules (if any)
+node_modules/
