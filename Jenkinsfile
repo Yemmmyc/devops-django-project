@@ -13,7 +13,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo "🔄 Cloning repository from GitHub..."
-                git url: 'https://github.com/Yemmmyc/devops-django-project.git', branch: 'master'
+                git url: 'https://github.com/Yemmmyc/devops-django-project.git', branch: 'main'
             }
         }
 
